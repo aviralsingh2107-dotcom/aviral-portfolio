@@ -11,10 +11,10 @@ export default function Projects() {
       color: "var(--cyan)",
     },
     {
-      title: "Weather Forecast App",
-      desc: "A responsive weather app that fetches live data from a public weather API, showing current conditions and a multi-day forecast for any searched city.",
-      tags: ["JavaScript", "HTML", "CSS", "REST API"],
-      icon: "🌦️",
+      title: "Smart Room Automation Project",
+      desc: "An IoT-based home automation system using Arduino to control lights, fans, and appliances remotely, with sensor-based automatic switching for energy efficiency.",
+      tags: ["Arduino", "C++", "IoT", "Sensors", "Embedded Systems"],
+      icon: "🏠",
       color: "var(--violet)",
     },
     {
