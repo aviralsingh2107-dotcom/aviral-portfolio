@@ -1,10 +1,22 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
+import { useRef } from "react";
 
 export default function Hero() {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"]
+  });
+
+  const photoX = useTransform(scrollYProgress, [0, 1], [0, 400]);
+  const photoY = useTransform(scrollYProgress, [0, 1], [0, -300]);
+  const photoScale = useTransform(scrollYProgress, [0, 1], [1, 0.4]);
+  const photoOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0.3]);
+
   return (
-    <section style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', padding: '0 24px', paddingTop: 80 }}>
+    <section ref={ref} style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', padding: '0 24px', paddingTop: 80, position: 'relative' }}>
       <div style={{ maxWidth: 1100, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 60, flexWrap: 'wrap', width: '100%' }}>
 
         <motion.div
@@ -34,7 +46,14 @@ export default function Hero() {
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          style={{ position: 'relative' }}
+          style={{
+            position: 'relative',
+            x: photoX,
+            y: photoY,
+            scale: photoScale,
+            opacity: photoOpacity,
+            zIndex: 50
+          }}
         >
           <div style={{
             position: 'absolute', inset: -3, borderRadius: '50%',
